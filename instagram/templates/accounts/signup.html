@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
+    <!--
+      Or,
+      Use the following (no variables, supports IE11):
+      <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
+    -->
+    
+    <!-- Halfmoon JS -->
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+</head>
+<body>
+    <center>
+    <img src="https://i.imgur.com/zqpwkLQ.png" />
+    <br>
+    <form action="" method="POST" class="w-350  mw-full">
+    
+        {% load widget_tweaks %}
+
+        {% csrf_token %}
+        {% for fields in form.visible_fields %}
+        <div class="form-group">
+            {% render_field fields class="form-control" id="name" placeholder=fields.label required="required" %}
+            <ul class="errorlist">
+                {% for err in fields.errors %}
+                <li>{{ err }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    
+     
+        <input class="w-350 btn btn-primary" type="submit" value="Sign up">
+        <!-- {{ form.as_p }} -->
+    
+    </form>
+</center>
+</body>
+</html>
